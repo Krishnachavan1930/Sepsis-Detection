@@ -7,7 +7,12 @@ interface StatCardProps {
   description: string;
 }
 
-const StatCard: React.FC<StatCardProps> = ({ title, value, icon, description }) => {
+const StatCard: React.FC<StatCardProps> = ({
+  title,
+  value,
+  icon,
+  description,
+}) => {
   return (
     <div className="bg-white rounded-xl shadow-sm border m-11 border-gray-200 p-6 mt-16">
       <div className="flex items-center space-x-4">
