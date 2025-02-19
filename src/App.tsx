@@ -10,6 +10,7 @@ import Home from "./pages/Home";
 import Dashboard from "./admin/pages/Dashboard";
 import About from "../src/pages/About";
 import { Doctors } from "./user/pages/Doctors";
+import Contact from "./pages/contact";
 
 function Layout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
@@ -33,6 +34,7 @@ function App() {
           <Route path="/admin" element={<Dashboard />} />
           <Route path="/about" element={<About></About>} />
           <Route path="/doctors" element={<Doctors></Doctors>} />
+          <Route path="/contact" element={<Contact></Contact>} />
 
           {/*
            Add more routes here */}

@@ -1,99 +1,89 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Facebook, Twitter, Linkedin, Mail, Phone, Globe, Instagram } from "lucide-react";
+import type React from "react"
+import { MapPin, Phone, Mail, Clock, Linkedin, Twitter, Facebook, Youtube } from "lucide-react"
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
     <footer className="bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <h3 className="text-lg font-semibold mb-4">About Univoc</h3>
-            <p className="text-gray-400">
-              Empowering the future through innovative education and industry
-              collaboration.
+      <div className="container mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Logo & Short Description */}
+          <div className="col-span-1 md:col-span-2 lg:col-span-1">
+            <div className="flex items-center mb-4">
+              <img src="/placeholder.svg?height=40&width=40" alt="SepsisDetect Logo" className="h-10 w-10 mr-2" />
+              <span className="text-xl font-bold">SepsisDetect</span>
+            </div>
+            <p className="text-sm text-gray-400">
+              SepsisDetect helps hospitals and doctors efficiently manage patient data and detect sepsis risks using
+              AI-driven analysis.
             </p>
           </div>
 
+          {/* Quick Links */}
           <div>
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              <li>
-                <Link to="/about" className="text-gray-400 hover:text-white">
-                  About Us
-                </Link>
+              {["Home", "About Us", "Dashboard", "Patient Management", "Sepsis Reports", "Contact Us"].map((link) => (
+                <li key={link}>
+                  <a href="#" className="text-gray-400 hover:text-white transition duration-300">
+                    {link}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact Information */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
+            <ul className="space-y-2">
+              <li className="flex items-center">
+                <MapPin className="h-5 w-5 mr-2 text-blue-500" />
+                <span className="text-sm">123 HealthCare Street, New York, USA</span>
               </li>
-              <li>
-                <Link to="/services" className="text-gray-400 hover:text-white">
-                  Services
-                </Link>
+              <li className="flex items-center">
+                <Phone className="h-5 w-5 mr-2 text-blue-500" />
+                <span className="text-sm">+1 123-456-7890</span>
               </li>
-              <li>
-                <Link to="/schemes" className="text-gray-400 hover:text-white">
-                  DVOC & BVOC
-                </Link>
+              <li className="flex items-center">
+                <Mail className="h-5 w-5 mr-2 text-blue-500" />
+                <span className="text-sm">support@sepsisdetect.com</span>
               </li>
-              <li>
-                <Link
-                  to="/job-portal"
-                  className="text-gray-400 hover:text-white"
-                >
-                  Job Seva Portal
-                </Link>
+              <li className="flex items-center">
+                <Clock className="h-5 w-5 mr-2 text-blue-500" />
+                <span className="text-sm">Mon - Fri, 9:00 AM - 6:00 PM</span>
               </li>
             </ul>
           </div>
 
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Contact Info</h3>
-            <ul className="space-y-2 text-gray-400">
-              <li className="flex items-center space-x-2">
-                <Phone className="h-4 w-4" />
-                <span>+91-8448373884</span>
-              </li>
-              <li className="flex items-center space-x-2">
-                <Phone className="h-4 w-4" />
-                <span>+91-011-43504632</span>
-              </li>
-              <li className="flex items-center space-x-2">
-                <Mail className="h-4 w-4" />
-                <span>Info@univoc.co.in</span>
-              </li>
-              <li className="flex items-center space-x-2">
-                <Globe className="h-4 w-4" />
-                <span>www.univoc.co.in</span>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Connect With Us</h3>
+          {/* Social Media Links */}
+          <div className="col-span-1 md:col-span-2 lg:col-span-1">
+            <h3 className="text-lg font-semibold mb-4">Follow Us</h3>
             <div className="flex space-x-4">
-              <a href="https://www.facebook.com/profile.php?id=61565893847420&mibextid=ZbWKwL" className="text-gray-400 hover:text-white">
-                <Facebook className="h-6 w-6" />
-              </a>
-              <a href="https://www.instagram.com/univocfoundation?igsh=MXN0aWRlcjNrM2NiNQ==" className="text-gray-400 hover:text-white">
-                <Instagram className="h-6 w-6" />
-              </a>
-              <a href="https://www.linkedin.com/company/univocc/" className="text-gray-400 hover:text-white">
-                <Linkedin className="h-6 w-6" />
-              </a>
-              <a href="https://x.com/Univoc272586?t=NXnOf5m8VFe1G6coGzx7Cw&s=08" className="text-gray-400 hover:text-white">
-                <Twitter className="h-6 w-6" />
-              </a>
+              {[Linkedin, Twitter, Facebook, Youtube].map((Icon, index) => (
+                <a key={index} href="#" className="text-gray-400 hover:text-white transition duration-300">
+                  <Icon className="h-6 w-6" />
+                </a>
+              ))}
             </div>
           </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
-          <p>
-            &copy; {new Date().getFullYear()} Univoc Foundation. All rights
-            reserved.
-          </p>
+        {/* Copyright & Terms */}
+        <div className="mt-8 pt-8 border-t border-gray-800 text-center">
+          <p className="text-sm text-gray-400">© {new Date().getFullYear()} SepsisDetect. All Rights Reserved.</p>
+          <div className="mt-2 space-x-4">
+            <a href="#" className="text-sm text-gray-400 hover:text-white transition duration-300">
+              Privacy Policy
+            </a>
+            <a href="#" className="text-sm text-gray-400 hover:text-white transition duration-300">
+              Terms & Conditions
+            </a>
+          </div>
         </div>
       </div>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer
+
