@@ -1,45 +1,45 @@
-import { LayoutDashboard, Calendar, UserCircle, HelpCircle, LogOut, Heart, User } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { FaUserMd, FaUser, FaFileMedical, FaSignOutAlt, FaQuestionCircle } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   return (
-    <div className="h-screen w-64 bg-sky-500 text-white p-6">
-      <div className="flex items-center gap-2 mb-8">
-        <Heart className="w-8 h-8" />
-        <span className="text-xl font-semibold">Health Care</span>
-      </div>
-      
-      <nav className="space-y-4">
-        <Link to="/admin/dashboard" className="flex items-center gap-3 p-3 bg-white text-black rounded-lg">
-          <LayoutDashboard className="w-5 h-5" />
-          <span>Dashboard</span>
-        </Link>
-        
-        <Link to="/admin/calendar" className="flex items-center gap-3 p-3 hover:bg-gray-800 rounded-lg">
-          <Calendar className="w-5 h-5" />
-          <span>Patient Details</span>
-        </Link>
-        
-        <Link to="/admin/help" className="flex items-center gap-3 p-3 hover:bg-gray-800 rounded-lg">
-          <User className="w-5 h-5" />
-          <span>Add Patient</span>
-        </Link>
+    <div className="h-screen w-64 bg-white text-gray-900 flex flex-col justify-between shadow-md border-r">
+      {/* Sidebar Header */}
+      <div>
+        <h2 className="text-2xl font-bold p-6 text-center border-b">Admin Panel</h2>
+        <ul className="space-y-3 mt-4 px-4">
+          <li>
+            <Link to="/admin/dashboard" className="flex items-center gap-4 p-4 text-lg font-semibold rounded-lg hover:bg-gray-100 transition">
+              <FaUserMd className="text-xl" /> <span>Dashboard</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/admin/add-patient" className="flex items-center gap-4 p-4 text-lg font-semibold rounded-lg hover:bg-gray-100 transition">
+              <FaFileMedical className="text-xl" /> <span>Add Patient</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/admin/patient-details" className="flex items-center gap-4 p-4 text-lg font-semibold rounded-lg hover:bg-gray-100 transition">
+              <FaUser className="text-xl" /> <span>Patient Details</span>
+            </Link>
+          </li>
+          <li>
+            <Link to="/admin/profile" className="flex items-center gap-4 p-4 text-lg font-semibold rounded-lg hover:bg-gray-100 transition">
+              <FaUser className="text-xl" /> <span>Profile</span>
+            </Link>
+          </li>
+          
+          <Link to="/admin/help" className="flex items-center gap-4 p-4 text-lg font-semibold rounded-lg hover:bg-gray-100 transition">
+          <FaQuestionCircle className="text-xl text-blue-500" /> <span>Help</span>
+          </Link>
 
-        <Link to="/admin/profile" className="flex items-center gap-3 p-3 hover:bg-gray-800 rounded-lg">
-          <UserCircle className="w-5 h-5" />
-          <span>Profile</span>
-        </Link>
-        
-        <Link to="/admin/help" className="flex items-center gap-3 p-3 hover:bg-gray-800 rounded-lg">
-          <HelpCircle className="w-5 h-5" />
-          <span>Help</span>
-        </Link>
-      </nav>
-      
-      <div className="absolute bottom-6 left-6">
-        <button className="flex items-center gap-3 p-3 hover:bg-gray-800 rounded-lg">
-          <LogOut className="w-5 h-5" />
-          <span>Logout</span>
+        </ul>
+      </div>
+
+      {/* Logout Button at the Bottom */}
+      <div className="p-4 border-t">
+        <button className="flex items-center gap-4 p-4 text-lg font-semibold text-red-500 rounded-lg hover:bg-red-100 transition w-full">
+          <FaSignOutAlt className="text-xl" /> <span>Logout</span>
         </button>
       </div>
     </div>
