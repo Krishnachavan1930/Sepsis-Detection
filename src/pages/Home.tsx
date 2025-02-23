@@ -1,46 +1,95 @@
 import React from "react";
 import { Users, AlertCircle, ClipboardList, UserCheck } from "lucide-react";
-import Navbar from "../components/Navbar"; // Adjust the path if necessary
-import StatCard from "../components/statCard"; // Adjust the path if necessary
-import { Link } from "react-router-dom"; // Assuming you're using react-router for navigation
+import Navbar from "../components/Navbar"; // Adjust path if necessary
+import StatCard from "../components/statCard"; // Adjust path if necessary
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion"; // For animations
 
 function HomePage() {
+  // Animation variants
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  };
+
+  const staggerChildren = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.2 },
+    },
+  };
+
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 overflow-x-hidden">
       <Navbar hospitalName="Sandip Hospital" />
 
       {/* Hero Section */}
-      <div className="relative pt-16">
-        <div className="absolute inset-0 h-[500px] bg-gradient-to-br from-blue-600 to-blue-700">
-          <div className="absolute inset-0 bg-black/20" />
+      <motion.div
+        className="relative pt-16"
+        initial="hidden"
+        animate="visible"
+        variants={staggerChildren}
+      >
+        <div className="absolute inset-0 h-[600px] bg-gradient-to-br from-blue-700 via-blue-600 to-indigo-800">
+          <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" />
+          <img
+            src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80"
+            alt="Hospital background"
+            className="absolute inset-0 w-full h-full object-cover opacity-20"
+          />
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-4 py-24 sm:py-32">
+        <div className="relative max-w-7xl mx-auto px-4 py-28 sm:py-36">
           <div className="text-center text-white">
-            <h1 className="text-4xl font-bold sm:text-5xl md:text-6xl">
+            <motion.h1
+              className="text-4xl font-extrabold sm:text-5xl md:text-6xl tracking-tight"
+              variants={fadeInUp}
+            >
               Advanced Sepsis Detection & Monitoring
-            </h1>
-            <p className="mt-6 text-xl text-blue-100 max-w-3xl mx-auto">
-              Leveraging AI technology to detect sepsis early and save lives
-              through continuous patient monitoring and real-time alerts.
-            </p>
+            </motion.h1>
+            <motion.p
+              className="mt-6 text-xl text-blue-100 max-w-3xl mx-auto"
+              variants={fadeInUp}
+            >
+              Harnessing cutting-edge AI to detect sepsis early, monitor patients in real-time, and save lives with precision and speed.
+            </motion.p>
 
             {/* Dashboard Button */}
-            <div className="mt-8">
+            <motion.div className="mt-10" variants={fadeInUp}>
               <Link
-                to="/admin" // Adjust this route if necessary
-                className="inline-block bg-blue-600 text-white py-3 px-6 rounded-lg shadow-lg hover:bg-blue-700 transition-all duration-300"
+                to="/admin"
+                className="inline-flex items-center bg-blue-600 text-white py-3 px-8 rounded-xl shadow-lg hover:bg-blue-700 transform hover:scale-105 transition-all duration-300 font-medium"
               >
-                Go to Dashboard
+                Explore Dashboard
+                <svg
+                  className="ml-2 w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"
+                  />
+                </svg>
               </Link>
-            </div>
+            </motion.div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Stats Section */}
-      <div className="max-w-7xl mx-auto px-4 -mt-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-16">
+      <motion.div
+        className="max-w-7xl mx-auto px-4 -mt-20 relative z-10"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={staggerChildren}
+      >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <StatCard
             title="Total Patients"
             value={1234}
@@ -66,56 +115,74 @@ function HomePage() {
             description="Doctors & Nurses"
           />
         </div>
-      </div>
+      </motion.div>
 
       {/* Info Section */}
-      <div className="max-w-7xl mx-auto px-4 py-16">
+      <motion.div
+        className="max-w-7xl mx-auto px-4 py-20"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={staggerChildren}
+      >
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-3xl font-bold text-gray-900">
+          <motion.div variants={fadeInUp}>
+            <h2 className="text-4xl font-bold text-gray-900">
               AI-Powered Sepsis Detection
             </h2>
-            <p className="mt-4 text-lg text-gray-600">
-              Our advanced AI algorithms continuously monitor patient vital
-              signs and lab results to detect early signs of sepsis, enabling
-              faster intervention and better outcomes.
+            <p className="mt-4 text-lg text-gray-600 leading-relaxed">
+              Our state-of-the-art AI system analyzes vital signs, lab results, and patient data in real-time to identify sepsis risks early, empowering healthcare providers with actionable insights.
             </p>
-            <div className="mt-8 space-y-4">
-              <div className="flex items-start space-x-3">
-                <div className="flex-shrink-0 w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center">
-                  <div className="w-2 h-2 rounded-full bg-blue-600" />
-                </div>
-                <p className="text-gray-600">
-                  Real-time monitoring of vital signs
-                </p>
-              </div>
-              <div className="flex items-start space-x-3">
-                <div className="flex-shrink-0 w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center">
-                  <div className="w-2 h-2 rounded-full bg-blue-600" />
-                </div>
-                <p className="text-gray-600">
-                  Early warning system for sepsis risk
-                </p>
-              </div>
-              <div className="flex items-start space-x-3">
-                <div className="flex-shrink-0 w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center">
-                  <div className="w-2 h-2 rounded-full bg-blue-600" />
-                </div>
-                <p className="text-gray-600">
-                  Instant notifications to medical staff
-                </p>
-              </div>
+            <div className="mt-8 space-y-6">
+              {[
+                "Real-time vital signs monitoring",
+                "Early sepsis risk detection",
+                "Instant staff notifications",
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  className="flex items-start space-x-3"
+                  variants={fadeInUp}
+                >
+                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center">
+                    <div className="w-3 h-3 rounded-full bg-blue-600" />
+                  </div>
+                  <p className="text-gray-700 font-medium">{item}</p>
+                </motion.div>
+              ))}
             </div>
-          </div>
-          <div className="relative h-96 rounded-2xl overflow-hidden">
+          </motion.div>
+          <motion.div
+            className="relative h-96 rounded-2xl overflow-hidden shadow-xl"
+            variants={fadeInUp}
+          >
             <img
-              src="/placeholder.svg?height=384&width=512"
+              src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80"
               alt="Medical monitoring system"
-              className="absolute inset-0 w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
             />
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
+
+      {/* Call to Action Section */}
+      <motion.div
+        className="bg-blue-700 py-16 text-center"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={fadeInUp}
+      >
+        <h3 className="text-3xl font-bold text-white mb-4">
+          Ready to Transform Patient Care?
+        </h3>
+        <Link
+          to="/admin"
+          className="inline-block bg-white text-blue-700 py-3 px-8 rounded-xl shadow-lg hover:bg-gray-100 transition-all duration-300 font-semibold"
+        >
+          Get Started Now
+        </Link>
+      </motion.div>
     </div>
   );
 }
